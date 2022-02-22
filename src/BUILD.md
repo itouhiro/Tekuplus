@@ -1,61 +1,61 @@
-﻿PixelMplus : How to Build
-=========================
+Tekuplus : How to Build
+=======================
 
-Copyright (C) 2013 itouhiro  
-Copyright (C) 2002-2013 M+ FONTS PROJECT
+Copyright (C) 2022 itouhiro  
+Copyright (C) 2002-2005 M+ FONTS PROJECT
 
 
 Build
 -----
 
 ```
-$  sh build_PixelMplus10.sh
-$  sh build_PixelMplus12.sh
-$  fontforge -script PixelMplus10-Regular.pe
-$  fontforge -script PixelMplus10-Bold.pe
-$  fontforge -script PixelMplus12-Regular.pe
-$  fontforge -script PixelMplus12-Bold.pe
+$  cd src/
+$  cd bdf.d/; sh bdfsize.sh; cd ../
+$  sh build_tekuplus.sh
+$  fontforge -script tekuplus-regular.pe; fontforge -script tekuplus-bold.pe
+$  sh fix_too_wide.sh
 ```
-
-生成スクリプトは
-http://sourceforge.jp/cvs/view/mplus-fonts/mplus_outline_fonts/
-から取得しました。
-
-詳しくは以下を参照。  
-http://itouhiro.hatenablog.com/entry/20130602/font
 
 
 Build Requirements
 ------------------
 
-* ビットマップフォント（BDF）編集
-    * Windows 7
-    * [bmp2bdf](http://hp.vector.co.jp/authors/VA013241/font/bmp2bdf.html)
-    * [bdf2bmp](http://hp.vector.co.jp/authors/VA013241/font/bdf2bmp.html)
-    * Adobe Photoshop
-
-* アウトラインフォント生成
-    * Debian Linux 6
-    * fontforge 0.0.20100501-5
-    * perl 5.10.1-17squeeze4
+* Windows 10 Pro 64bit  
+* FontForge 2012-07-31  
+        http://www.geocities.jp/meir000/fontforge/
+* ImageMagick 7.0.10-28 Q16 x64  
+        https://imagemagick.org/script/download.php#windows
+* bdf2bmp version 0.6  
+        https://github.com/itouhiro/bdf2bmp
+* bmp2bdf version 0.2  
+        https://github.com/itouhiro/bmp2bdf
+* TTX 2.4 -- From OpenType To XML And Back  
+        http://rtfreesoft.blogspot.com/search/label/ttx
+* Git for Windows (bash 4.4, awk 5.0, perl 5.32,..)  
+        https://github.com/git-for-windows/git/
 
 
 Reference
 ---------
 
-JIS X 0213⇔Unicodeの文字コード変換表として、
-以下を配布物に含めました。 ucstable.d/JISX0213.TXT です。
+Teku font  
+        https://github.com/itouhiro/tekufont
 
-- JIS X 0213:2004 漢字8ビット符号とUnicodeの対応表  
-  http://x0213.org/codetable/jisx0213-2004-8bit-std.txt
+M+ BITMAP FONTS  
+        https://mplus-fonts.osdn.jp/mplus-bitmap-fonts/
 
+M+ FONTS scripts  
+        https://osdn.net/cvs/view/mplus-fonts/mplus_outline_fonts/scripts/?hideattic=0
+
+Tekuplus scripts are forked from [PixelMplus](https://github.com/itouhiro/PixelMplus),
+and PixelMplus scripts are forked from [M+ FONTS](https://mplus-fonts.osdn.jp/).
+
+JIS X 0213:2004 conversion table  
+        http://x0213.org/codetable/jisx0213-2004-8bit-std.txt
 
 
 License
 -------
 
-M+ FONT LICENSE
-
-M+ FONT LICENSEについては、配布物に含まれる
-[mplus_bitmap_fonts/LICENSE_E](../misc/mplus_bitmap_fonts/LICENSE_E)
-をご覧ください。
+M+ FONT LICENSE  
+(see [LICENSE.md](./LICENSE.md))

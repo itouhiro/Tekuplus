@@ -1,0 +1,23 @@
+M+ BITMAP FONTS
+  和文フォントは全角固定幅であり、10pxと12pxのレギュラー体およびボールド体が含まれる。
+  和文フォントにはJIS X 0208の仮名文字と記号類、それに約7,000字の漢字が収録されている。
+  欧文フォントには基本的な英数字（ISO/IEC 8859-1の範囲の文字）ユーロ記号（“€”、U+20AC）が 含まれる。
+  2002年に制作を開始[1]。 最新版は2003年7月14日リリースの2.2.4。
+
+https://github.com/microsoft/vscode/blob/main/src/vs/loader.js
+  /**
+   * Does `url` start with http:// or https:// or file:// or / ?
+   */
+  Utilities.isAbsolutePath = function (url) {
+      return /^((http:\/\/)|(https:\/\/)|(file:\/\/)|(\/))/.test(url);
+  };
+  Utilities.forEachProperty = function (obj, callback) {
+      if (obj) {
+          var key = void 0;
+          for (key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                  callback(key, obj[key]);
+              }
+          }
+      }
+  }

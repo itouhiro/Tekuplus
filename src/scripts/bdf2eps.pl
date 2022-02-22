@@ -1,6 +1,5 @@
 #!/usr/bin/perl
-# Time-stamp: <Jun 02 2013>
-# Created:  MURAOKA Taro <koron@tka.att.ne.jp>
+# Created:  MURAOKA Taro
 # Modified: itouhiro
 
 use strict;
@@ -20,13 +19,15 @@ my @CELLSIZE = (500, 1000);
 my $SCALE = 76;
 my ($SCALE_X, $SCALE_Y) = (0, 0);
 my @files;
+my @embed_files;
 my %generated;
 
 my ($WIDTH, $HEIGHT);
-$config::FONT_BASENAME = 'PixelMplus';
+$config::FONT_BASENAME = 'Tekuplus';
 $config::FONT_WEIGHT = 'Regular';
-$config::FONT_COPYRIGHT = "Copyright (C) $YEAR M+ Font Project";
+$config::FONT_COPYRIGHT = "Copyright (C) $YEAR itouhiro\\nCopyright (C) 2002-2005 M+ Font Project";
 $config::FONT_VERSION = sprintf("%04d.%02d%02d", $YEAR, $MONTH, $DAY);
+$config::GASP = "65535,3";
 
 # Parse arguments
 for (my $i = 0; $i < @ARGV; ++$i) {
@@ -49,13 +50,17 @@ for (my $i = 0; $i < @ARGV; ++$i) {
 	    $config::FONT_WEIGHT = $ARGV[++$i];
 	} elsif ($c eq "-fc" and $next) {
 	    $config::FONT_COPYRIGHT = $ARGV[++$i];
+	} elsif ($c eq "-f" and $next) {
+	    push @files, $ARGV[++$i];
+	} elsif ($c eq "-e" and $next) {
+	    push @embed_files, $ARGV[++$i];
+	} elsif ($c eq "-g" and $next) {
+	    $config::GASP = $ARGV[++$i];
 	} elsif ($c eq "-v") {
 	    ++$VERBOSE;
 	} else {
 	    printf STDERR "  Ignored option: %s\n", $c;
 	}
-    } elsif (-f $c and -r _) {
-	push @files, $c;
     } else {
 	printf STDERR "  Ignored argument: %s\n", $c;
     }
@@ -80,6 +85,8 @@ my $pes = new PESGenerator(
     -version => $config::FONT_VERSION,
     #-input_sfd => $input_sfd,
     -output_sfd => $config::FONT_OUTPUTFILE,
+    -input_embed_files => join(" ",@embed_files),
+    -gasp => $config::GASP,
     -offset => [0, -200],
     -simplify => 1,
 );
@@ -91,7 +98,7 @@ for my $f (@files) {
     &proc_file($f, \*IN, $pes);
     close IN;
 }
-$pes->save(sprintf("%s.pe", $config::FONT_NAME));
+$pes->save(sprintf("%s.pe", lc $config::FONT_NAME));
 exit 0;
 
 sub check_header

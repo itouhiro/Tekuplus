@@ -1,8 +1,6 @@
-# Time-stamp: <Jun 02 2013>
-#
 # PfaEdit (fontforge) Script Generator
 #
-# Created:  MURAOKA Taro <koron@tka.att.ne.jp>
+# Created:  MURAOKA Taro
 # Modified: itouhiro
 
 package PESGenerator;
@@ -29,6 +27,8 @@ sub new
 	input_sfd => $param{'-input_sfd'},
 	output_sfd => $param{'-output_sfd'},
 	scratch_build => ($param{'-input_sfd'} ne $param{'-output_sfd'}),
+	input_embed_files => $param{'-input_embed_files'},
+	gasp => $param{'-gasp'},
 	offset => $param{'-offset'},
 	descent => $param{'-descent'},
 	ascent => $param{'-ascent'},
@@ -65,6 +65,7 @@ sub save
 	printf OUT "Open(\"%s\")\n", $this->{input_sfd};
     } else {
 	print OUT <<"__EOB__";
+SetPrefs('CoverageFormatsAllowed', 1)
 New()
 Reencode("iso10646-1")
 SetCharCnt(65536)
@@ -132,10 +133,33 @@ __EOB__
     # Footer
     $output_ttf = $this->{output_sfd};
     $output_ttf =~ s/\.sfd$/.ttf/;
+    $bdf_weight = "r";
+    if ($this->{weight} =~ /ld$/){
+        $bdf_weight = "b";
+    }
     print OUT <<"__EOB__";
 # Save SFD and quit
-Generate("$output_ttf", "", 0x84)
-Save("$this->{output_sfd}")
+Generate("$output_ttf", "ttf", 0x8c)
+#Save("$this->{output_sfd}")
+__EOB__
+    $this->{basename} .= "Bit";
+    $this->{fontname} = $this->{basename} . "-" . $this->{weight};
+    $this->{fullname} = $this->{basename} . " " . $this->{weight};
+    $this->{output_sfd} = $this->{fontname} . ".sfd";
+    $output_ttf = $this->{output_sfd};
+    $output_ttf =~ s/\.sfd$/.ttf/;
+    print OUT <<"__EOB__";
+# Build with embedded bitmaps
+SetFontNames("$this->{fontname}", "$this->{basename}", "$this->{fullname}", "$this->{weight}", "$this->{copyright}", "$this->{version}")
+# Import BDF
+__EOB__
+    foreach my $embed_bdf (split(" ",$this->{input_embed_files})){
+        printf OUT "Import(\"" . $embed_bdf . "\")\n";
+    }
+    printf OUT "SetGasp([" . $this->{gasp} . "])\n";
+    print OUT <<"__EOB__";
+Generate("$output_ttf", "ttf", 0x8c)
+#Save("$this->{output_sfd}")
 Quit()
 __EOB__
     close OUT;
