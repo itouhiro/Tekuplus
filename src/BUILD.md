@@ -31,7 +31,7 @@ Build Requirements
         https://github.com/itouhiro/bmp2bdf
 * TTX 2.4 -- From OpenType To XML And Back  
         http://rtfreesoft.blogspot.com/search/label/ttx
-* Git for Windows (bash 4.4, awk 5.0, perl 5.32,..)  
+* Git for Windows 2.7.4 32bit (bash 4.4, awk 5.0, perl 5.32,..)  
         https://github.com/git-for-windows/git/
 
 

@@ -42,6 +42,9 @@ Copyright (C) 2002-2005 M+ FONTS PROJECT
 History
 -------
 
+* 2022-03-03  Version 2022.0303  
+        Change 'S' glyph to distinguish from '5'
+
 * 2022-02-22  Version 2022.0222  
         First Release
 
