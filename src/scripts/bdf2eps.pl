@@ -25,7 +25,7 @@ my %generated;
 my ($WIDTH, $HEIGHT);
 $config::FONT_BASENAME = 'Tekuplus';
 $config::FONT_WEIGHT = 'Regular';
-$config::FONT_COPYRIGHT = "Copyright (C) $YEAR itouhiro\\nCopyright (C) 2002-2005 M+ Font Project";
+$config::FONT_COPYRIGHT = "Copyright (C) 2022-$YEAR itouhiro\\nCopyright (C) 2002-2005 M+ Font Project";
 $config::FONT_VERSION = sprintf("%04d.%02d%02d", $YEAR, $MONTH, $DAY);
 $config::GASP = "65535,3";
 
@@ -128,8 +128,8 @@ sub check_header
 		$encode = "JISX0201";
 	    } elsif ($encode =~ m/jisx0208/i) {
 		$encode = "JISX0208";
-	    } elsif ($encode =~ m/jisx0213/i) {
-		$encode = "JISX0213";
+	    } elsif ($encode =~ m/unicode/i) {
+		$encode = "UNICODE";
 	    }
 	    $head->{encode} = $encode;
 	}

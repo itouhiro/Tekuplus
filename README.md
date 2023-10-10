@@ -1,9 +1,9 @@
 Tekuplus
 ========
 
-TrueType fonts for Japanese bitmap-font-lovers on HiDPI.
+TrueType fonts for Japanese with bitmap fonts on high-resolution (HiDPI) displays
 
-![Windows 10 with Tekuplus font](misc/tekuplus-200percent-9pt.png)
+<img src="misc/top.png" width="1082" height="480" alt="Windows 11 with Tekuplus font">
 
 
 Feature
@@ -35,18 +35,23 @@ License
 M+ FONT LICENSE  
 (see [LICENSE.md](./LICENSE.md))
 
-Copyright (C) 2022 itouhiro  
+Copyright (C) 2022-2023 itouhiro  
 Copyright (C) 2002-2005 M+ FONTS PROJECT
 
 
 History
 -------
 
+* 2023-10-10  Version 2023.1010
+    * FIX: change ambiguous glyphs from half-width to full-width
+    * ADD: add dingbat glyphs  
+    ![added-dingbats](misc/added-dingbats.png)
+
 * 2022-03-03  Version 2022.0303  
-        Change 'S' glyph to distinguish from '5'
+    * UPDATE: change 'S' glyph to distinguish from '5'
 
 * 2022-02-22  Version 2022.0222  
-        First Release
+    * first release
 
 ----
 
@@ -62,7 +67,7 @@ History
   ビットマップを埋め込んだバージョンも用意。
 
 * JIS第1・第2水準のすべての漢字を収録。ISO-8859-1(Latin-1)の文字も収録。
-  そのほかにもPixelMplus由来の、いくつかの記号を追加。
+  そのほかにもUnicodeの、いくつかの記号を追加。
 
 * ライセンスは自由な M+ FONT LICENSE。
 
@@ -79,7 +84,7 @@ History
     * 36ピクセル（12ピクセルと同じものを単に3倍拡大）
 
   Windowsでは以下のポイント指定で、埋め込みビットマップを使えるはず。
-  ただし小数点を含むサイズは指定できないアプリが多い。13.5ptは指定できるアプリもある。
+  ただし小数点を含むサイズは指定できないアプリが多い。
 
     | 表示スケール | ポイント                |
     | ------------ | ------------------------|
@@ -92,39 +97,38 @@ History
 説明
 ----
 
-Windows 10は「表示スケール」の拡大で、高解像度ディスプレイ(HiDPI)に対応できます。
+Windows 10は、高解像度ディスプレイ(HiDPI)に対応するため、「表示スケール」を変更できる。  
+たとえば、表示スケール 100％ では文字やアイコンの見え方が小さすぎるとき、表示スケール 200％ にすることで大きく表示できる。
 
-たとえばノートパソコンには、ディスプレイが15インチで「3240x2160ピクセル」の機種があります。これを表示スケール 100％で使うと、アイコンも小さいし何より文字が小さくて読みにくい。
+図1. 表示スケール（設定＞システム＞ディスプレイ＞拡大/縮小）  
+![Windows 11 setting](misc/windows11_display_scale.png)
 
-そこで、表示スケールを200％にすると、まるで「1620x1080ピクセル」のディスプレイに表示しているかのようなアイコンや文字の大きさになります。これなら文字も通常の大きさに表示されて読みやすい。
+このフォントは、以下のように設定すれば、埋め込みビットマップで表示できる。
 
-図1. Windows 10の「設定＞システム＞ディスプレイ＞表示スケール」
-![Windows 10の設定](misc/windows10-scale200percent.gif)
+- フォント「TekuplusBit  9ポイント」
+    - アプリの設定でフォントの大きさを指定する
 
-しかし表示スケール 100％のとき使われていた 9ポイントの埋め込みビットマップは、表示スケール 200％では使われずに、アウトライン表示になってしまいます。
-そこで、単に 2倍拡大したビットマップも埋め込むことで、表示スケールを 200％にしても、埋め込みビットマップを使われるようにしました。
+図2. アウトライン（Tekuplus）と、埋め込みビットマップ（TekuplusBit）の違い  
+<img src="misc/windows11_outline_vs_bitmap.png" width="1330" height="717" alt="Outline and Embedded bitmap">
 
-表示スケール 100％のときは、
+しかし、表示スケール 200％のときは、同じ「9ポイント」でも埋め込みビットマップが使われずに、アウトライン表示になる問題があった。  
+そこで、単に 縦横 2倍拡大したビットマップも埋め込むことで、表示スケールを 200％にしても、埋め込みビットマップを使われるようにした。
 
-* 埋め込みビットマップで表示しているとき（9pt、18pt）
-* アウトラインで表示しているとき（8pt、10pt、17pt、19pt）
+念のため、縦横 3倍拡大したビットマップも埋め込んでいる。だが、表示スケール300％を使う環境が実際にあるのかは不明。  
+縦横 4倍拡大したビットマップもソースコードを変更すれば埋め込むことはできるが、フォントのファイルサイズが大きくなるので、やっていない。
 
-の差は大きいので、見ればすぐに違いがわかります。
 
-図2. 表示スケール 100％でサイズ 8,9,10ptを指定
-![Windows XPのメモ帳](misc/tekuplus-100percent-9pt.png)
+PixelMplusとの違い
+------------------
 
-図3. 表示スケール 100％でサイズ 17,18,19ptを指定
-![Windows XPのメモ帳](misc/tekuplus-100percent-18pt.png)
+このフォントは [PixelMplus](https://github.com/itouhiro/PixelMplus) の兄弟フォントだ。同じ作り方で作っている。  
+違いは以下になる。
 
-表示スケール 200％のときは、差が少なくなります。
-同じ 9ptで、文字色も同じときの差は以下です。
+    |                          | PixelMplus       | Tekuplus        | TekuplusBit     |
+    | ------------------------ | ---------------- | --------------- | --------------- |
+    | **日本語の字体**         | M+ BITMAP FONTS  | M+ BITMAP FONTS | M+ BITMAP FONTS |
+    | **英数字の字体**         | M+ BITMAP FONTS  | Teku font       | Teku font       |
+    | **フォントサイズ**       | 10pixel, 12pixel | 12pixelのみ     | 12pixelのみ     |
+    | **埋め込みビットマップ** | なし             | なし            | あり            |
 
-* アウトラインで表示しているときは、文字色が、蛍光灯やネオン管のような不安定さを感じさせます。
-* 埋め込みビットマップで表示しているときは、文字色が、道路に書かれた白線のように安定して見えます。
-
-図4. 表示スケール 200％でサイズ 9ptを指定して、文字は黒、背景は白。アウトライン表示と埋め込みビットマップを交互に表示
-![Windows 10のテキストエディタMery](misc/tekuplus-200percent-9px-backwhite.gif)
-
-図5. 表示スケール 200％でサイズ 9ptを指定して、文字は白、背景は黒。アウトライン表示と埋め込みビットマップを交互に表示
-![Windows 10のテキストエディタMery](misc/tekuplus-200percent-9px-backblack.gif)
+上記の Teku fontは、自作の英数字ビットマップフォント。
