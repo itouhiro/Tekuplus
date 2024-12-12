@@ -1,9 +1,18 @@
+English [日本語](./README_ja.md)
+
+
 Tekuplus
 ========
 
 TrueType fonts for Japanese with bitmap fonts on high-resolution (HiDPI) displays
 
 <img src="misc/top.png" width="1082" height="480" alt="Windows 11 with Tekuplus font">
+
+
+Download
+--------
+
+<https://github.com/itouhiro/Tekuplus/releases>
 
 
 Feature
@@ -35,17 +44,21 @@ License
 M+ FONT LICENSE  
 (see [LICENSE.md](./LICENSE.md))
 
-Copyright (C) 2022-2023 itouhiro  
+Copyright (C) 2022-2024 itouhiro  
 Copyright (C) 2002-2005 M+ FONTS PROJECT
 
 
 History
 -------
 
+* 2024-12-12  Version 2024.1212
+    * UPDATE: dingbat glyphs
+    * UPDATE: build process
+    * UPDATE: doc
+
 * 2023-10-10  Version 2023.1010
     * FIX: change ambiguous glyphs from half-width to full-width
     * ADD: add dingbat glyphs  
-    ![added-dingbats](misc/added-dingbats.png)
 
 * 2022-03-03  Version 2022.0303  
     * UPDATE: change 'S' glyph to distinguish from '5'
@@ -53,82 +66,49 @@ History
 * 2022-02-22  Version 2022.0222  
     * first release
 
-----
 
-## Tekuplus（テクプラス）
+Detailed Explanation
+--------------------
 
-高解像度ディスプレイでもビットマップフォントを使いたい人向けのTrueTypeフォントです。
+Windows 11 allows users to adjust the "Display Scale" to accommodate high-resolution displays (HiDPI).  
+For example, if text and icons appear too small at 100% scale,
+you can increase the scale to 200% to make them larger.
 
-
-特徴
-----
-
-* ビットマップフォントのように見えるが、アウトライン等幅TrueTypeフォント。
-  ビットマップを埋め込んだバージョンも用意。
-
-* JIS第1・第2水準のすべての漢字を収録。ISO-8859-1(Latin-1)の文字も収録。
-  そのほかにもUnicodeの、いくつかの記号を追加。
-
-* ライセンスは自由な M+ FONT LICENSE。
-
-* 半角英数字は [Tekuフォント](https://github.com/itouhiro/tekufont)。
-  全角ひらがな・カタカナ・漢字は
-  [M+ BITMAP FONTS](https://mplus-fonts.osdn.jp/mplus-bitmap-fonts/) の12px。
-
-* Tekuplus は埋め込みビットマップなし。
-  TekuplusBit は埋め込みビットマップあり。
-  埋め込みビットマップは以下の3つ。
-
-    * 12ピクセル
-    * 24ピクセル（12ピクセルと同じものを単に2倍拡大）
-    * 36ピクセル（12ピクセルと同じものを単に3倍拡大）
-
-  Windowsでは以下のポイント指定で、埋め込みビットマップを使えるはず。
-  ただし小数点を含むサイズは指定できないアプリが多い。
-
-    | 表示スケール | ポイント                |
-    | ------------ | ------------------------|
-    | 100％        | 9pt,    18pt,   27pt    |
-    | 150％        | 6.75pt, 13.5pt, 20.25pt |
-    | 200％        | 4.5pt,  9pt,    13.5pt  |
-    | 300％        | 3pt,    6pt,    9pt     |
-
-
-説明
-----
-
-Windows 10は、高解像度ディスプレイ(HiDPI)に対応するため、「表示スケール」を変更できる。  
-たとえば、表示スケール 100％ では文字やアイコンの見え方が小さすぎるとき、表示スケール 200％ にすることで大きく表示できる。
-
-図1. 表示スケール（設定＞システム＞ディスプレイ＞拡大/縮小）  
+Figure 1: Display Scale (Settings > System > Display > Scale)  
 ![Windows 11 setting](misc/windows11_display_scale.png)
 
-このフォントは、以下のように設定すれば、埋め込みビットマップで表示できる。
+To display fonts with embedded bitmaps, the following settings can be used:
 
-- フォント「TekuplusBit  9ポイント」
-    - アプリの設定でフォントの大きさを指定する
+- Font "TekuplusBit 9pt"
+    - Set the font size in the application settings
 
-図2. アウトライン（Tekuplus）と、埋め込みビットマップ（TekuplusBit）の違い  
+Figure 2: Difference between outline (Tekuplus) and embedded bitmap (TekuplusBit)  
 <img src="misc/windows11_outline_vs_bitmap.png" width="1330" height="717" alt="Outline and Embedded bitmap">
 
-しかし、表示スケール 200％のときは、同じ「9ポイント」でも埋め込みビットマップが使われずに、アウトライン表示になる問題があった。  
-そこで、単に 縦横 2倍拡大したビットマップも埋め込むことで、表示スケールを 200％にしても、埋め込みビットマップを使われるようにした。
+However, at a 200% display scale, the embedded bitmap would not be used
+even for a "9pt" font and would instead display in outline form.
+To resolve this, the bitmap scaled 2x in both directions was embedded,
+ensuring that the embedded bitmap would be used even at 200% display scale.
 
-念のため、縦横 3倍拡大したビットマップも埋め込んでいる。だが、表示スケール300％を使う環境が実際にあるのかは不明。  
-縦横 4倍拡大したビットマップもソースコードを変更すれば埋め込むことはできるが、フォントのファイルサイズが大きくなるので、やっていない。
+Additionally, bitmaps scaled 3x in both directions are also embedded,
+though it's unclear whether 300% scaling is commonly used.  
+A 4x scaled bitmap could be embedded by modifying the source code,
+but it would increase the font file size, so this was not done.
 
 
-PixelMplusとの違い
-------------------
+Difference from PixelMplus
+--------------------------
 
-このフォントは [PixelMplus](https://github.com/itouhiro/PixelMplus) の兄弟フォントだ。同じ作り方で作っている。  
-違いは以下になる。
+This font is a sibling of [PixelMplus](https://github.com/itouhiro/PixelMplus).
+Both are created in the same way.
 
-    |                          | PixelMplus       | Tekuplus        | TekuplusBit     |
-    | ------------------------ | ---------------- | --------------- | --------------- |
-    | **日本語の字体**         | M+ BITMAP FONTS  | M+ BITMAP FONTS | M+ BITMAP FONTS |
-    | **英数字の字体**         | M+ BITMAP FONTS  | Teku font       | Teku font       |
-    | **フォントサイズ**       | 10pixel, 12pixel | 12pixelのみ     | 12pixelのみ     |
-    | **埋め込みビットマップ** | なし             | なし            | あり            |
+The difference is as follows:
 
-上記の Teku fontは、自作の英数字ビットマップフォント。
+|                        | PixelMplus       | Tekuplus        | TekuplusBit     |
+| ---------------------- | ---------------- | --------------- | --------------- |
+| **Japanese glyph**     | M+ BITMAP FONTS  | M+ BITMAP FONTS | M+ BITMAP FONTS |
+| **alphanumeric glyph** | M+ BITMAP FONTS  | Teku font       | Teku font       |
+| **font size**          | 10pixel, 12pixel | 12pixel only    | 12pixel only    |
+| **embedded bitmap**    | -                | -               | ✓              |
+
+Teku font above is a self-made alphanumeric bitmap font.

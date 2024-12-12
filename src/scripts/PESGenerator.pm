@@ -68,7 +68,7 @@ sub save
 SetPrefs('CoverageFormatsAllowed', 1)
 New()
 Reencode("iso10646-1")
-SetCharCnt(65536)
+SetCharCnt(1114111)
 __EOB__
     }
     # Header for scratch
@@ -132,7 +132,7 @@ __EOB__
     }
     # Footer
     $output_ttf = $this->{output_sfd};
-    $output_ttf =~ s/\.sfd$/.ttf/;
+    $output_ttf =~ s/\.sfd$/_nosmp.ttf/;
     $bdf_weight = "r";
     if ($this->{weight} =~ /ld$/){
         $bdf_weight = "b";
@@ -147,7 +147,7 @@ __EOB__
     $this->{fullname} = $this->{basename} . " " . $this->{weight};
     $this->{output_sfd} = $this->{fontname} . ".sfd";
     $output_ttf = $this->{output_sfd};
-    $output_ttf =~ s/\.sfd$/.ttf/;
+    $output_ttf =~ s/\.sfd$/_nosmp.ttf/;
     print OUT <<"__EOB__";
 # Build with embedded bitmaps
 SetFontNames("$this->{fontname}", "$this->{basename}", "$this->{fullname}", "$this->{weight}", "$this->{copyright}", "$this->{version}")

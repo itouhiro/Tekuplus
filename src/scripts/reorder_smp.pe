@@ -1,0 +1,37 @@
+#!/usr/bin/env fontforge -script
+if ($argc <= 1)
+  Print("usage: fontforge -script reorder_smp.pe foo.ttf")
+  Quit(0)
+endif
+
+filename=$1
+Open(filename)
+Print("opened " + filename)
+unicodeValues = ["1F17E"]
+emojiIndex=-1
+doOperation=1
+SelectWorthOutputting()
+foreach
+  u = GlyphInfo('Unicode')
+  if (u < 0)
+    nm = GlyphInfo('Name')
+    if (emojiIndex>=0)
+      # Print("glyph " + nm)
+      if (nm != 'glyph1' && doOperation)
+        SetGlyphName("uni"+unicodeValues[emojiIndex])
+        SetUnicodeValue(UCodePoint(Strtol(unicodeValues[emojiIndex],16)))
+        emojiIndex++
+        if (emojiIndex>=SizeOf(unicodeValues))
+          doOperation=0
+        endif
+      endif
+    else
+      if (Strstr(nm,'.notdef') >= 0)
+        emojiIndex=0
+      endif
+    endif
+  endif
+endloop
+newfilename=Strsub(filename,0,Strstr(filename,"_nosmp")) + "_smp.ttf"
+Generate(newfilename, "ttf", 0x8c)
+Print("wrote " + newfilename)

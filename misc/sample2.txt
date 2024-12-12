@@ -1,0 +1,23 @@
+Tekuplus（テクプラス）
+  高解像度ディスプレイでもビットマップフォントを使いたい人向けのTrueTypeフォントです。
+  JIS第1・第2水準のすべての漢字を収録。ISO-8859-1(Latin-1)の文字も収録。
+  そのほかにもUnicodeの、いくつかの記号を追加。
+  半角英数字はTekuフォント。全角ひらがな・カタカナ・漢字はM+ BITMAP FONTSの12px。
+
+https://github.com/microsoft/vscode/blob/main/src/vs/loader.js
+  /**
+   * Does `url` start with http:// or https:// or file:// or / ?
+   */
+  Utilities.isAbsolutePath = function (url) {
+      return /^((http:\/\/)|(https:\/\/)|(file:\/\/)|(\/))/.test(url);
+  };
+  Utilities.forEachProperty = function (obj, callback) {
+      if (obj) {
+          var key = void 0;
+          for (key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                  callback(key, obj[key]);
+              }
+          }
+      }
+  }

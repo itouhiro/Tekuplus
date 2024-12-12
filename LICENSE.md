@@ -1,6 +1,6 @@
 Tekuplus font
 
-Copyright (C) 2022 itouhiro  
+Copyright (C) 2022-2024 itouhiro  
 Copyright (C) 2002-2005 M+ FONTS PROJECT
 
 

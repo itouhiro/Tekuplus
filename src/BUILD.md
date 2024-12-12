@@ -1,7 +1,7 @@
 Tekuplus : How to Build
 =======================
 
-Copyright (C) 2022 itouhiro  
+Copyright (C) 2022-2024 itouhiro  
 Copyright (C) 2002-2005 M+ FONTS PROJECT
 
 
@@ -10,17 +10,16 @@ Build
 
 ```
 $  cd src/
-$  cd bdf.d/; sh bdfsize.sh; cd ../
-$  sh build_tekuplus.sh
-$  fontforge -script tekuplus-regular.pe; fontforge -script tekuplus-bold.pe
-$  sh fix_too_wide.sh
+$  sh bdfsize.sh
+$  sh prepare.sh
+$  LANG=C FONTFORGE="/c/home/bin/fontforge-cygwin_2012_08_02/cygwin/bin/fontforge.exe" sh build.sh
 ```
 
 
 Build Requirements
 ------------------
 
-* Windows 10 Pro 64bit  
+* Windows 11 (also XP/Vista/8/10)
 * FontForge 2012-07-31  
         http://www.geocities.jp/meir000/fontforge/
 * ImageMagick 7.0.10-28 Q16 x64  
@@ -49,9 +48,6 @@ M+ FONTS scripts
 
 Tekuplus scripts are forked from [PixelMplus](https://github.com/itouhiro/PixelMplus),
 and PixelMplus scripts are forked from [M+ FONTS](https://mplus-fonts.osdn.jp/).
-
-JIS X 0213:2004 conversion table  
-        http://x0213.org/codetable/jisx0213-2004-8bit-std.txt
 
 
 License

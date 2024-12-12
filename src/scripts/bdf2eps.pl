@@ -152,6 +152,8 @@ sub proc_startchar
     }
     return '' if eof $IN;
     # Initialize glyph conversion parameters
+    # $ perl -e '$ucode=0x1f17e; $ucode=sprintf("u%04X", $ucode); printf($ucode." ".substr($ucode,0,3));'
+    #   u1F17E u1F
     my $ucode = $enc_table->get(sprintf("%04X", $ecode));
     if ($ucode == 0) {
 	printf("  Skipped: u%04X is not mapped to UNICODE\n",
@@ -161,12 +163,14 @@ sub proc_startchar
     $ucode = sprintf("u%04X", $ucode);
     my $out = join("/", $OUTDIR, substr($ucode, 0, 3), $ucode.".eps");
     if (exists $generated{$out}) {
-	printf("  Skipped: u%04X already generated in file %s\n",
-	    $ecode, $generated{$out}) if $VERBOSE > 1;
+	printf("  Skipped: %s already generated in file %s\n",
+	    $ucode, $generated{$out}) if $VERBOSE > 1;
 	return '';
     }
     &proc_glyph($out, \@data);
     $generated{$out} = $filename;
+    printf("  %s generated in file %s\n",
+        $ucode, $generated{$out}) if $VERBOSE > 1;
     return $out;
 }
 
@@ -186,7 +190,7 @@ sub proc_file
     # Process bitmap data body.
     while (<$IN>) {
 	chomp;
-	if (m/^STARTCHAR\s+0x([[:xdigit:]]{4})/) {
+	if (m/^STARTCHAR\s+0x([[:xdigit:]]{4,5})/) {
 	    my $r = &proc_startchar(hex($1), $filename, $IN, $enc_table);
 	    next if $r eq '';
 	    $pes->add($r);
