@@ -6,7 +6,7 @@ Tekuplus（テクプラス）
 
 高解像度ディスプレイでもビットマップフォントを使いたい人向けのTrueTypeフォントです。
 
-<img src="misc/top.png" width="1082" height="480" alt="Windows 11 with Tekuplus font">
+<img src="misc/top.png" width="800" height="480" alt="Windows 11 with Tekuplus font">
 
 
 ダウンロード

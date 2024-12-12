@@ -6,7 +6,7 @@ Tekuplus
 
 TrueType fonts for Japanese with bitmap fonts on high-resolution (HiDPI) displays
 
-<img src="misc/top.png" width="1082" height="480" alt="Windows 11 with Tekuplus font">
+<img src="misc/top.png" width="800" height="480" alt="Windows 11 with Tekuplus font">
 
 
 Download
