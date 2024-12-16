@@ -64,7 +64,7 @@ Windows 11は、高解像度ディスプレイ(HiDPI)に対応するため、「
     - アプリの設定でフォントの大きさを指定する
 
 図2. アウトライン（Tekuplus）と、埋め込みビットマップ（TekuplusBit）の違い  
-<img src="misc/windows11_outline_vs_bitmap.png" width="1330" height="717" alt="Outline and Embedded bitmap">
+<img src="misc/windows11_outline_vs_bitmap.png" width="800" height="710" alt="Outline and Embedded bitmap">
 
 しかし、表示スケール 200％のときは、同じ「9ポイント」でも埋め込みビットマップが使われずに、アウトライン表示になる問題があった。  
 そこで、単に 縦横 2倍拡大したビットマップも埋め込むことで、表示スケールを 200％にしても、埋め込みビットマップを使われるようにした。

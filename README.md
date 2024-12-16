@@ -83,7 +83,7 @@ To display fonts with embedded bitmaps, the following settings can be used:
     - Set the font size in the application settings
 
 Figure 2: Difference between outline (Tekuplus) and embedded bitmap (TekuplusBit)  
-<img src="misc/windows11_outline_vs_bitmap.png" width="1330" height="717" alt="Outline and Embedded bitmap">
+<img src="misc/windows11_outline_vs_bitmap.png" width="800" height="710" alt="Outline and Embedded bitmap">
 
 However, at a 200% display scale, the embedded bitmap would not be used
 even for a "9pt" font and would instead display in outline form.
